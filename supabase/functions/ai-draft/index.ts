@@ -25,6 +25,7 @@ type Draft = {
   title: string
   copy_text: string
   suggested_time_iso: string
+  suggested_photo?: string | null
   rationale: string
 }
 
@@ -87,7 +88,7 @@ Deno.serve(async (req) => {
 
   const { data: client, error: clientError } = await admin
     .from('clients')
-    .select('id, name, website, brand_voice, target_audience, content_pillars, default_hashtags, social_accounts(platform, handle)')
+    .select('id, name, website, tagline, brand_voice, target_audience, content_pillars, default_hashtags, brand_colors, social_accounts(platform, handle)')
     .eq('id', client_id)
     .single()
   if (clientError || !client) {
@@ -101,6 +102,15 @@ Deno.serve(async (req) => {
     .order('created_at', { ascending: false })
     .limit(20)
 
+  // Photos/videos the client has uploaded to their content library
+  const { data: library } = await admin
+    .from('assets')
+    .select('file_name, caption, kind')
+    .eq('client_id', client_id)
+    .in('kind', ['photo', 'video'])
+    .order('created_at', { ascending: false })
+    .limit(15)
+
   const platforms = (client.social_accounts ?? []).map((a: { platform: string }) => a.platform)
   const activePlatforms = platforms.length > 0 ? platforms : ['instagram', 'facebook']
 
@@ -112,12 +122,20 @@ Draft ${count} social media post ideas for this client. Spread them across their
 
 CLIENT
 - Name: ${client.name}
+- Tagline: ${client.tagline ?? 'n/a'}
 - Website: ${client.website ?? 'n/a'}
 - Brand voice: ${client.brand_voice ?? 'friendly, professional, plain English'}
+- Brand colours: ${client.brand_colors ? JSON.stringify(client.brand_colors) : 'not chosen yet'}
 - Target audience: ${client.target_audience ?? 'UK consumers'}
 - Content pillars: ${client.content_pillars ?? 'behind the scenes, tips, social proof, offers'}
 - House hashtags: ${client.default_hashtags ?? 'none'}
 - Platforms: ${activePlatforms.join(', ')}
+
+This is a very small business that is new to social media — write like a helpful local
+expert, never corporate. Introduce-the-business and meet-the-owner angles work well early on.
+
+PHOTOS/VIDEOS IN THEIR LIBRARY (pick a real one per post where it fits):
+${(library ?? []).map((a: { file_name: string; caption: string | null; kind: string }) => `- [${a.kind}] ${a.file_name}${a.caption ? ` — ${a.caption}` : ''}`).join('\n') || '- none uploaded yet (suggest what they should photograph instead)'}
 
 RECENTLY PLANNED (avoid repeating these angles):
 ${(recent ?? []).map((r: { title: string; platform: string }) => `- [${r.platform}] ${r.title}`).join('\n') || '- none yet'}
@@ -130,6 +148,7 @@ Reply with ONLY a JSON array. Each element:
   "title": short working title,
   "copy_text": the full ready-to-post caption in the brand voice, with hashtags where they fit the platform,
   "suggested_time_iso": ISO 8601 datetime within the next 7 days (Europe/London),
+  "suggested_photo": exact file name from their library that fits this post, or null,
   "rationale": one sentence on why this post and this timing
 }`
 
@@ -164,7 +183,7 @@ Reply with ONLY a JSON array. Each element:
     scheduled_at: d.suggested_time_iso ? new Date(d.suggested_time_iso).toISOString() : null,
     ai_generated: true,
     ai_model: model,
-    notes: d.rationale ?? null,
+    notes: [d.rationale, d.suggested_photo ? `Photo: ${d.suggested_photo}` : null].filter(Boolean).join(' · ') || null,
   }))
 
   const { error: insertError } = await admin.from('content_items').insert(rows)

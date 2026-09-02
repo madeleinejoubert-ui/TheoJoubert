@@ -69,6 +69,32 @@ Claude drafts  →  Theo curates  →  Client approves copy + timing  →  Sched
 - **Publish**: only approved items get scheduled in Metricool. The AI never touches a
   social network.
 
+## Brand kit, content library, and Base44 sample webpages
+
+Built for very small businesses starting social media from zero:
+
+- **Brand Kit** (client portal): the client picks one of six curated colour schemes
+  (fine-tunable per swatch), uploads a logo, and writes a one-line tagline. Saved via
+  the `save_brand_kit` RPC so clients can never touch fees or status fields.
+- **Content Library** (client portal): drag-in uploads of photos, videos, and
+  documents to the private `client-assets` storage bucket (50 MB/file). Storage
+  policies confine each client to their own folder. Theo sees everything under
+  **Brand & Library** in the studio console.
+- **AI uses all of it**: drafts are written in the brand voice and tagline, and each
+  draft names a real photo from the client's library to use.
+- **Base44 sample webpages**: every client has an unguessable share token. The
+  `brand-kit` edge function returns their kit as JSON — colours, logo, tagline,
+  sample photos (7-day signed URLs), social handles:
+
+  ```
+  GET https://ehapjmliqboqikwspqvz.supabase.co/functions/v1/brand-kit?token=<share_token>
+  Header: apikey: <project anon key>
+  ```
+
+  The exact URL per client (copy button included) is on the **Brand & Library** page.
+  Point the Base44 app at it to spin up a sample site in the client's branding.
+  Rotating `share_token` on the client row revokes an old link.
+
 ## Nightly Metricool analytics sync
 
 The `metricool-sync` edge function runs at 05:30 UTC daily (pg_cron) and pulls a

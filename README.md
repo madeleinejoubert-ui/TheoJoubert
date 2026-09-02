@@ -35,10 +35,19 @@ setup guide).
 - **Dashboard** — active clients, posts scheduled this week, new leads, unpaid invoices.
 
 **Client portal (each client logs in with their own email):**
-- **Overview** — their Metricool numbers (synced nightly), plus what's coming up.
+- **Overview** — their Metricool numbers (synced nightly), what's coming up, and a
+  getting-started checklist for businesses brand new to social media.
 - **Approvals** — every post's copy and proposed time, with one-click approve or
   "request changes" with a note. Nothing goes live without the client's yes.
+- **Brand Kit** — pick a colour scheme from six curated palettes (fine-tunable),
+  upload a logo, add a tagline. Feeds the AI drafts and the Base44 sample webpages.
+- **Content Library** — upload photos, videos and documents (private storage,
+  per-client isolation); the AI suggests which real photo fits each post.
 - **My Accounts** — they add the social profiles they want managed.
+
+**Base44 integration:** the `brand-kit` edge function serves each client's colours,
+logo, tagline and sample photos as JSON via an unguessable share token, so the Base44
+app can spin up a sample webpage in their branding (URL on the Brand & Library page).
 
 **The AI line:** `Claude drafts → Theo curates → client approves → scheduled in
 Metricool`. AI only ever creates drafts; two humans stand between it and anything

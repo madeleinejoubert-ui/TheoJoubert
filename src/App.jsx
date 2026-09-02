@@ -6,9 +6,12 @@ import Dashboard from './pages/Dashboard.jsx'
 import Clients from './pages/Clients.jsx'
 import ContentCalendar from './pages/ContentCalendar.jsx'
 import Leads from './pages/Leads.jsx'
+import OwnerLibrary from './pages/Library.jsx'
 import ClientOverview from './pages/client/Overview.jsx'
 import ClientApprovals from './pages/client/Approvals.jsx'
 import ClientAccounts from './pages/client/Accounts.jsx'
+import ClientBrandKit from './pages/client/BrandKit.jsx'
+import ClientLibrary from './pages/client/Library.jsx'
 
 function OwnerApp() {
   return (
@@ -25,6 +28,7 @@ function OwnerApp() {
           <NavLink to="/" end>Dashboard</NavLink>
           <NavLink to="/clients">Clients</NavLink>
           <NavLink to="/calendar">Content Calendar</NavLink>
+          <NavLink to="/library">Brand &amp; Library</NavLink>
           <NavLink to="/leads">Leads</NavLink>
         </nav>
         <button className="btn-ghost signout" onClick={() => supabase.auth.signOut()}>
@@ -36,6 +40,7 @@ function OwnerApp() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/calendar" element={<ContentCalendar />} />
+          <Route path="/library" element={<OwnerLibrary />} />
           <Route path="/leads" element={<Leads />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
@@ -58,6 +63,8 @@ function ClientApp({ profile }) {
         <nav>
           <NavLink to="/" end>Overview</NavLink>
           <NavLink to="/approvals">Approvals</NavLink>
+          <NavLink to="/brand">Brand Kit</NavLink>
+          <NavLink to="/library">Content Library</NavLink>
           <NavLink to="/accounts">My Accounts</NavLink>
         </nav>
         <button className="btn-ghost signout" onClick={() => supabase.auth.signOut()}>
@@ -68,6 +75,8 @@ function ClientApp({ profile }) {
         <Routes>
           <Route path="/" element={<ClientOverview clientId={profile.client_id} />} />
           <Route path="/approvals" element={<ClientApprovals clientId={profile.client_id} />} />
+          <Route path="/brand" element={<ClientBrandKit clientId={profile.client_id} />} />
+          <Route path="/library" element={<ClientLibrary clientId={profile.client_id} />} />
           <Route path="/accounts" element={<ClientAccounts clientId={profile.client_id} />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
