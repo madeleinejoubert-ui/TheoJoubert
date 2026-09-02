@@ -21,11 +21,13 @@ npm run dev
 ```
 
 Open http://localhost:5173, click **"First time? Create an account"**, and sign up with
-Theo's email. Confirm the email, sign in — that account is the owner.
+Theo's email. Confirm the email, sign in — **the first account ever created becomes the
+owner** automatically.
 
-> Tip: once Theo has signed up, disable open signups in the Supabase dashboard
-> (Authentication → Providers → Email → turn off "Allow new users to sign up")
-> so no one else can create an account.
+> Signups must STAY OPEN: clients log in through the same screen. A new signup only
+> gets access if its email matches a client record (it becomes a client-portal login
+> for that client); any other signup lands in a "pending" holding screen with no data
+> access. So: add the client with their real email first, then invite them to sign up.
 
 ## Deploy (free)
 
@@ -42,9 +44,37 @@ Manage data, auth, and backups at
 [supabase.com/dashboard/project/ehapjmliqboqikwspqvz](https://supabase.com/dashboard/project/ehapjmliqboqikwspqvz).
 
 Recommended settings to review:
-- **Authentication → Email**: disable signups after Theo registers (see above).
 - **Authentication → URL configuration**: add the deployed site URL.
 - **Database → Backups**: confirm daily backups are on.
+- **Edge Functions → Secrets**: this is where the automations get their keys —
+  `METRICOOL_USER_TOKEN` + `METRICOOL_USER_ID` (nightly analytics sync) and
+  `ANTHROPIC_API_KEY` (AI drafting; Theo's own Claude key at handover).
+
+## The AI content pipeline (and where the human line sits)
+
+```
+Claude drafts  →  Theo curates  →  Client approves copy + timing  →  Scheduled in Metricool  →  Published
+   (AI)            (human #1)         (human #2, in the portal)          (human-operated)
+```
+
+- **AI drafts**: the `ai-draft` edge function (owner-only) writes posts in the client's
+  brand voice from the fields on their client record. Everything it creates is status
+  `draft`, flagged `ai_generated`, and visible only to Theo.
+- **Theo curates**: edits the keepers and moves them to `awaiting approval` on the
+  Content Calendar.
+- **Client approves**: in the portal, the client sees the copy and the proposed time,
+  and either approves or sends it back with a note (`changes requested`). Row-level
+  security means a client can *only* flip `awaiting_approval` items to approved or
+  changes-requested — nothing else, and never another client's.
+- **Publish**: only approved items get scheduled in Metricool. The AI never touches a
+  social network.
+
+## Nightly Metricool analytics sync
+
+The `metricool-sync` edge function runs at 05:30 UTC daily (pg_cron) and pulls a
+rolling 30-day snapshot per client platform into `analytics_snapshots` — that's what
+the client Overview page shows. To activate per client: set their **Metricool brand
+id** on the client record and mark their social accounts as connected in Metricool.
 
 ## Metricool workflow
 

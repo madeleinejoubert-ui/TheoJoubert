@@ -4,8 +4,12 @@ import { supabase } from '../lib/supabase.js'
 const STATUSES = ['lead', 'proposal', 'active', 'paused', 'ended']
 
 export default function Clients() {
+  const emptyForm = {
+    name: '', contact_name: '', email: '', monthly_fee: '',
+    metricool_blog_id: '', brand_voice: '', content_pillars: '',
+  }
   const [clients, setClients] = useState([])
-  const [form, setForm] = useState({ name: '', contact_name: '', email: '', monthly_fee: '' })
+  const [form, setForm] = useState(emptyForm)
   const [error, setError] = useState('')
 
   async function load() {
@@ -26,10 +30,13 @@ export default function Clients() {
       contact_name: form.contact_name || null,
       email: form.email || null,
       monthly_fee: form.monthly_fee ? Number(form.monthly_fee) : null,
+      metricool_blog_id: form.metricool_blog_id || null,
+      brand_voice: form.brand_voice || null,
+      content_pillars: form.content_pillars || null,
     })
     if (error) setError(error.message)
     else {
-      setForm({ name: '', contact_name: '', email: '', monthly_fee: '' })
+      setForm(emptyForm)
       load()
     }
   }
@@ -48,8 +55,16 @@ export default function Clients() {
         <input placeholder="Contact name" value={form.contact_name} onChange={(e) => setForm({ ...form, contact_name: e.target.value })} />
         <input placeholder="Email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
         <input placeholder="Monthly fee £" type="number" step="0.01" value={form.monthly_fee} onChange={(e) => setForm({ ...form, monthly_fee: e.target.value })} />
+        <input placeholder="Metricool brand id" value={form.metricool_blog_id} onChange={(e) => setForm({ ...form, metricool_blog_id: e.target.value })} />
+        <input placeholder="Brand voice (for AI drafts)" value={form.brand_voice} onChange={(e) => setForm({ ...form, brand_voice: e.target.value })} style={{ minWidth: 220 }} />
+        <input placeholder="Content pillars, comma separated" value={form.content_pillars} onChange={(e) => setForm({ ...form, content_pillars: e.target.value })} style={{ minWidth: 220 }} />
         <button className="btn-primary">Add client</button>
       </form>
+      <p className="muted">
+        The client's email doubles as their portal login — when they sign up with it, they
+        get the client portal automatically. Metricool brand id + connected accounts turn on
+        the nightly analytics sync.
+      </p>
       {error && <p className="form-message">{error}</p>}
       <table className="data-table">
         <thead>

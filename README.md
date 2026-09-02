@@ -26,11 +26,26 @@ setup guide).
 
 ## What the platform does
 
-- **Clients** — pipeline from lead → proposal → active, with packages and fees.
-- **Content Calendar** — plan posts per client/platform, mirror what's scheduled in
-  Metricool, track idea → approved → published.
-- **Leads** — the public website form writes straight into the database; enquiries
-  show up here.
+**Studio console (Theo):**
+- **Clients** — pipeline from lead → active, with packages, fees, brand voice, and
+  Metricool brand link.
+- **Content Calendar** — AI drafting panel (Claude writes in the client's brand
+  voice), manual planning, and the approval workflow.
+- **Leads** — the public website form writes straight into the database.
 - **Dashboard** — active clients, posts scheduled this week, new leads, unpaid invoices.
-- **Ready in the schema** (UI to come): invoices, Metricool analytics snapshots,
-  per-client social account register.
+
+**Client portal (each client logs in with their own email):**
+- **Overview** — their Metricool numbers (synced nightly), plus what's coming up.
+- **Approvals** — every post's copy and proposed time, with one-click approve or
+  "request changes" with a note. Nothing goes live without the client's yes.
+- **My Accounts** — they add the social profiles they want managed.
+
+**The AI line:** `Claude drafts → Theo curates → client approves → scheduled in
+Metricool`. AI only ever creates drafts; two humans stand between it and anything
+being published.
+
+**Automations (Supabase Edge Functions):**
+- `metricool-sync` — nightly (05:30 UTC) pull of every client's 30-day platform
+  metrics from the Metricool API into `analytics_snapshots`.
+- `ai-draft` — owner-only Claude drafting; activates when Theo's own
+  `ANTHROPIC_API_KEY` is added at handover (see [`docs/HANDOVER.md`](docs/HANDOVER.md)).
