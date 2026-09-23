@@ -8,27 +8,27 @@
 
 @layer base {
   .site-root {
-    --background: 60 9% 98%;
-    --foreground: 20 10% 10%;
-    --card: 45 17% 98%;
-    --card-foreground: 20 10% 10%;
+    --background: 222 47% 11%;
+    --foreground: 0 0% 100%;
+    --card: 220 40% 15%;
+    --card-foreground: 0 0% 100%;
     --primary: 38 92% 50%;
     --primary-foreground: 20 10% 10%;
-    --secondary: 20 10% 10%;
-    --secondary-foreground: 60 10% 98%;
-    --muted: 43 15% 93%;
-    --muted-foreground: 25 8% 42%;
+    --secondary: 222 47% 9%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 33% 20%;
+    --muted-foreground: 217 20% 72%;
     --accent: 60 10% 98%;
     --accent-foreground: 20 10% 10%;
     --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 100%;
-    --border: 20 6% 90%;
-    --input: 20 6% 90%;
+    --border: 219 30% 26%;
+    --input: 219 30% 26%;
     --ring: 38 92% 50%;
-    --teal: 35 95% 44%;
-    --ink: 20 10% 10%;
+    --teal: 45 96% 60%;
+    --ink: 0 0% 100%;
     --zest: 38 92% 50%;
-    --parchment: 48 100% 96%;
+    --parchment: 222 47% 11%;
     --radius: 1.25rem;
     --font-heading: 'Clash Display', ui-sans-serif, system-ui, sans-serif;
     --font-body: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
@@ -65,7 +65,7 @@
   }
 
   .glass-nav {
-    background: hsl(48 100% 96% / 0.8);
+    background: hsl(var(--parchment) / 0.8);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
   }
@@ -81,7 +81,7 @@
   }
 
   .btn-outline-ink {
-    @apply border-2 border-secondary text-secondary rounded-full font-medium transition-all duration-300 hover:bg-secondary hover:text-secondary-foreground;
+    @apply border-2 border-foreground/40 text-foreground rounded-full font-medium transition-all duration-300 hover:bg-foreground/10;
     min-height: 48px;
   }
 

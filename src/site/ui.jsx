@@ -13,7 +13,7 @@ export function Button({ className = '', ...props }) {
 export function Input({ className = '', ...props }) {
   return (
     <input
-      className={`flex w-full border border-input bg-white/70 px-4 py-2 text-base placeholder:text-foreground/40 focus-ring ${className}`}
+      className={`flex w-full border border-input bg-transparent text-foreground px-4 py-2 text-base placeholder:text-foreground/40 focus-ring ${className}`}
       {...props}
     />
   )

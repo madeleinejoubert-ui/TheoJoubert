@@ -40,9 +40,9 @@ export default function Hero() {
           <div className="relative animate-fade-up" style={{ animationDelay: '0.1s' }}>
             <div className="floating-card overflow-hidden p-2">
               <Img
-                src="/images/hero-florist.png"
-                alt="A local florist arranging fresh blooms in a sunlit flower shop"
-                className="w-full aspect-[4/3] rounded-[1.5rem]"
+                src="/images/hero-highstreet.jpg"
+                alt="A bustling high street with independent shops, including Bloom & Stem Florist"
+                className="w-full aspect-[4/3] rounded-lg"
               />
             </div>
             <div className="absolute -bottom-4 -left-4 floating-card p-4 items-center gap-3 animate-float hidden sm:flex">
