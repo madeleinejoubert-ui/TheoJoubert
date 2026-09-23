@@ -11,9 +11,21 @@ import TestimonialsSection from '../components/TestimonialsSection.jsx'
 import FAQAccordion from '../components/FAQAccordion.jsx'
 import CTASection from '../components/CTASection.jsx'
 
-const exampleCases = [
-  { business_name: 'Example Café', industry: 'Hospitality', starting_situation: 'Inconsistent posting, no content strategy, low local visibility.', results: 'This is a placeholder example. Real case study results will appear here.' },
-  { business_name: 'Example Salon', industry: 'Beauty & Wellness', starting_situation: 'No time for social media, no engagement from followers.', results: 'This is a placeholder example. Real case study results will appear here.' },
+const previewCases = [
+  {
+    business_name: 'Little Lantern Stories',
+    industry: 'Storytelling & Content — Facebook',
+    starting_situation: 'A brand-new page with just 9 followers, no reach and no income from content.',
+    results: '9 → 600 followers in 7 weeks, 118.5K content views, 338 pieces of content — and the Meta accounts now monetising.',
+    real: true,
+  },
+  {
+    business_name: 'Example Café',
+    industry: 'Hospitality',
+    starting_situation: 'Inconsistent posting, no content strategy, low local visibility.',
+    results: 'This is a placeholder example. More real case studies will appear here as the agency grows.',
+    real: false,
+  },
 ]
 
 function CaseStudiesPreview() {
@@ -30,9 +42,11 @@ function CaseStudiesPreview() {
           </Link>
         </div>
         <div className="grid md:grid-cols-2 gap-6">
-          {exampleCases.map((c, i) => (
-            <div key={i} className="floating-card-hover p-8">
-              <span className="inline-block text-xs font-medium px-3 py-1 rounded-full bg-muted text-foreground/50 mb-4">Example</span>
+          {previewCases.map((c, i) => (
+            <div key={i} className={`floating-card-hover p-8 ${c.real ? 'ring-2 ring-primary' : ''}`}>
+              <span className={`inline-block text-xs font-medium px-3 py-1 rounded-full mb-4 ${c.real ? 'bg-primary text-primary-foreground' : 'bg-muted text-foreground/50'}`}>
+                {c.real ? 'Real case study' : 'Example'}
+              </span>
               <div className="flex items-center gap-2 mb-3">
                 <TrendingUp className="w-5 h-5 text-teal" />
                 <span className="text-sm font-medium text-foreground/60">{c.industry}</span>
