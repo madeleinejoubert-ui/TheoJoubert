@@ -6,7 +6,7 @@ import { Button } from '../ui.jsx'
 const faqs = [
   { question: 'What social media platforms do you manage?', answer: "We manage Facebook, Instagram, LinkedIn, Google Business Profile and more. We'll recommend the best platforms for your business during your free review." },
   { question: 'Do you create the content for us?', answer: "Yes. We create posts, captions, graphics and video concepts as part of your package. You can provide photos and videos too, but it's not required." },
-  { question: 'How often will you post?', answer: 'Posting frequency depends on your package — from 8 posts per month up to 20+. We recommend the right level based on your goals and budget.' },
+  { question: 'How often will you post?', answer: 'Every day. Depending on your package we create 6–16 ads daily and post up to 6, 9 or 12 times a day across your channels. We recommend the right level based on your goals and budget.' },
   { question: 'Can I approve posts before they go live?', answer: "Absolutely. Every post goes through your approval before publishing. You're always in control of what represents your business." },
   { question: 'How much does social media management cost?', answer: "Our packages start from £295 per month. We'll recommend the right package during your free consultation based on your needs and budget." },
 ]

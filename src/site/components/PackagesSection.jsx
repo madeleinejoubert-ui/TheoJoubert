@@ -3,9 +3,9 @@ import { Check, Star, ArrowRight } from 'lucide-react'
 import { Button } from '../ui.jsx'
 
 const packages = [
-  { name: 'Starter', tagline: 'For businesses that need consistency', price_display: 'From £295', features: ['2 social platforms', 'Monthly content strategy', '6 posts per month', 'Content scheduling', 'Monthly performance report', 'Monthly strategy check-in'], is_popular: false },
-  { name: 'Growth', tagline: 'For businesses ready to become more visible', price_display: 'From £495', features: ['Up to 3 social platforms', '9 posts per month', 'Reels/video content concepts', 'Content scheduling', 'Engagement monitoring', 'Monthly analytics report', 'Monthly strategy call'], is_popular: true },
-  { name: 'Pro', tagline: 'For businesses wanting a comprehensive presence', price_display: 'From £795', features: ['Up to 4 social platforms', '12 posts per month', 'Increased short-form video content', 'Community engagement', 'Campaign planning', 'Detailed analytics', 'Monthly strategy meeting', 'Priority support'], is_popular: false },
+  { name: 'Starter', tagline: 'For businesses that need consistency', price_display: 'From £295', features: ['6–8 ads created daily', 'Posted up to 6 times a day', 'Across multiple channels (up to 3)', 'Monthly content strategy', 'Scheduling via Metricool', 'Monthly performance report', 'Monthly strategy check-in'], is_popular: false },
+  { name: 'Growth', tagline: 'For businesses ready to become more visible', price_display: 'From £495', features: ['9–12 ads created daily', 'Posted up to 9 times a day', 'Across multiple channels (up to 4)', 'Reels/video content concepts', 'Engagement monitoring', 'Monthly analytics report', 'Monthly strategy call'], is_popular: true },
+  { name: 'Pro', tagline: 'For businesses wanting a comprehensive presence', price_display: 'From £795', features: ['12–16 ads created daily', 'Posted up to 12 times a day', 'Across multiple channels (up to 6)', 'Short-form video content', 'Community engagement & campaign planning', 'Detailed analytics', 'Business webpage hosting included', 'Priority support'], is_popular: false },
 ]
 
 export default function PackagesSection({ showAll = false }) {
