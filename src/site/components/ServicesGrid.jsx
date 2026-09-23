@@ -8,6 +8,7 @@ const services = [
   { title: 'Social Media Management', description: 'Content scheduling, publishing, community management, engagement monitoring and content calendar management.', features: ['Content scheduling', 'Publishing', 'Community management', 'Engagement monitoring', 'Content calendar management'] },
   { title: 'Analytics & Reporting', description: 'Monthly performance reports, engagement analysis, reach, impressions, follower growth and recommendations.', features: ['Monthly performance reports', 'Engagement analysis', 'Reach and impressions', 'Follower growth', 'Recommendations'] },
   { title: 'Local Business Growth', description: 'Local awareness campaigns, location-focused content, promotions, community engagement and customer review content.', features: ['Local awareness campaigns', 'Location-focused content', 'Promotions', 'Community engagement', 'Customer review content'] },
+  { title: 'Business Websites', description: 'We also design and develop professional business websites — built in your brand colours and designed to turn visitors into enquiries.', features: ['Custom design and development', 'Built around your brand', 'Mobile-friendly and fast', 'Enquiry and contact forms', 'Domain and hosting setup'] },
 ]
 
 export default function ServicesGrid({ showAll = false }) {
