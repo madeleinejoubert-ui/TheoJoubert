@@ -12,15 +12,45 @@ import ClientApprovals from './pages/client/Approvals.jsx'
 import ClientAccounts from './pages/client/Accounts.jsx'
 import ClientBrandKit from './pages/client/BrandKit.jsx'
 import ClientLibrary from './pages/client/Library.jsx'
+import SiteLayout from './site/components/SiteLayout.jsx'
+import SiteHome from './site/pages/Home.jsx'
+import SiteAbout from './site/pages/About.jsx'
+import SiteHowItWorks from './site/pages/HowItWorks.jsx'
+import SiteServices from './site/pages/Services.jsx'
+import SitePackages from './site/pages/Packages.jsx'
+import SiteFAQ from './site/pages/FAQPage.jsx'
+import SiteResults from './site/pages/Results.jsx'
+import SiteFreeReview from './site/pages/FreeReview.jsx'
+
+// Signed-out visitors see the Lantern Social marketing site (ported from the
+// Base44 build); /login opens the studio console / client portal sign-in.
+function PublicSite() {
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route element={<SiteLayout />}>
+        <Route path="/" element={<SiteHome />} />
+        <Route path="/services" element={<SiteServices />} />
+        <Route path="/packages" element={<SitePackages />} />
+        <Route path="/how-it-works" element={<SiteHowItWorks />} />
+        <Route path="/results" element={<SiteResults />} />
+        <Route path="/about" element={<SiteAbout />} />
+        <Route path="/faq" element={<SiteFAQ />} />
+        <Route path="/free-review" element={<SiteFreeReview />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Route>
+    </Routes>
+  )
+}
 
 function OwnerApp() {
   return (
     <div className="layout">
       <aside className="sidebar">
         <div className="brand">
-          <span className="brand-mark">TS</span>
+          <span className="brand-mark">LS</span>
           <div>
-            <strong>Theo Social Studio</strong>
+            <strong>Lantern Social</strong>
             <small>Studio console</small>
           </div>
         </div>
@@ -54,9 +84,9 @@ function ClientApp({ profile }) {
     <div className="layout">
       <aside className="sidebar">
         <div className="brand">
-          <span className="brand-mark">TS</span>
+          <span className="brand-mark">LS</span>
           <div>
-            <strong>Theo Social Studio</strong>
+            <strong>Lantern Social</strong>
             <small>Client portal</small>
           </div>
         </div>
@@ -89,7 +119,7 @@ function PendingScreen() {
   return (
     <div className="login-wrap">
       <div className="login-card">
-        <span className="brand-mark large">TS</span>
+        <span className="brand-mark large">LS</span>
         <h1>Almost there</h1>
         <p className="muted">
           Your account exists but isn't linked to a client yet. Ask Theo to add your email
@@ -135,7 +165,7 @@ export default function App() {
   }, [session])
 
   if (loading) return <div className="page-loading">Loading…</div>
-  if (!session) return <Login />
+  if (!session) return <PublicSite />
   if (!profile) return <div className="page-loading">Loading…</div>
 
   if (profile.role === 'client' && profile.client_id) return <ClientApp profile={profile} />

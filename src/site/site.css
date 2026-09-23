@@ -1,0 +1,141 @@
+/* Lantern Social public site theme — ported from the Base44 build.
+   Tokens are scoped to .site-root so they never collide with the
+   console/portal variables in styles.css (which uses hex --border etc.). */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .site-root {
+    --background: 60 9% 98%;
+    --foreground: 20 10% 10%;
+    --card: 45 17% 98%;
+    --card-foreground: 20 10% 10%;
+    --primary: 38 92% 50%;
+    --primary-foreground: 20 10% 10%;
+    --secondary: 20 10% 10%;
+    --secondary-foreground: 60 10% 98%;
+    --muted: 43 15% 93%;
+    --muted-foreground: 25 8% 42%;
+    --accent: 60 10% 98%;
+    --accent-foreground: 20 10% 10%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 20 6% 90%;
+    --input: 20 6% 90%;
+    --ring: 38 92% 50%;
+    --teal: 35 95% 44%;
+    --ink: 20 10% 10%;
+    --zest: 38 92% 50%;
+    --parchment: 48 100% 96%;
+    --radius: 1.25rem;
+    --font-heading: 'Clash Display', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .site-root {
+    @apply bg-background text-foreground font-body antialiased;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .site-root h1,
+  .site-root h2,
+  .site-root h3,
+  .site-root h4,
+  .site-root h5,
+  .site-root h6 {
+    @apply font-heading font-semibold tracking-tight;
+    color: hsl(var(--ink));
+  }
+
+  .site-root ::selection {
+    background-color: hsl(var(--primary) / 0.2);
+  }
+}
+
+@layer components {
+  .floating-card {
+    @apply bg-card rounded-xl shadow-[0_8px_40px_-12px_rgba(120,113,108,0.12)];
+  }
+
+  .floating-card-hover {
+    @apply floating-card transition-all duration-300 hover:-translate-y-1 hover:shadow-amber-500/10;
+  }
+
+  .glass-nav {
+    background: hsl(48 100% 96% / 0.8);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+  }
+
+  .btn-zest {
+    @apply bg-primary text-primary-foreground rounded-full font-medium transition-all duration-300 hover:-translate-y-0.5;
+    box-shadow: 0 4px 18px -4px rgba(245, 158, 11, 0.45), 0 0 28px rgba(245, 158, 11, 0.2);
+    min-height: 48px;
+  }
+
+  .btn-zest:hover {
+    box-shadow: 0 8px 26px -6px rgba(245, 158, 11, 0.65), 0 0 38px rgba(245, 158, 11, 0.32);
+  }
+
+  .btn-outline-ink {
+    @apply border-2 border-secondary text-secondary rounded-full font-medium transition-all duration-300 hover:bg-secondary hover:text-secondary-foreground;
+    min-height: 48px;
+  }
+
+  .section-padding {
+    @apply px-5 py-16 md:px-8 md:py-24 lg:py-28;
+  }
+
+  .container-narrow {
+    @apply mx-auto max-w-6xl;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-teal bg-clip-text text-transparent;
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-teal focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: ls-float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-up {
+    animation: ls-fade-up 0.6s ease-out forwards;
+  }
+
+  .animate-marquee {
+    animation: ls-marquee 30s linear infinite;
+  }
+
+  @keyframes ls-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  @keyframes ls-fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes ls-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-float, .animate-marquee { animation: none; }
+    .animate-fade-up { animation: none; opacity: 1; }
+  }
+}

@@ -1,7 +1,14 @@
-# Theo Social Studio
+# Lantern Social
 
-Business platform for Theo Joubert's freelance social media management business —
-built around the Metricool workflow developed for Owl Schoolhouse.
+Website + business platform for **Lantern Social** (lanternsocial.co.uk), Theo
+Joubert's social media management business — built around the Metricool workflow
+developed for Owl Schoolhouse.
+
+Signed-out visitors see the **marketing site** (ported from the Base44
+"GrowthPulse" build): Home, Services, Packages, How It Works, Results, About,
+FAQ, and a 3-step **Free Review** lead form that writes straight into the
+platform's `leads` table. **Client Login** opens the portal/console below.
+Domain setup for lanternsocial.co.uk: [`docs/DOMAIN_SETUP.md`](docs/DOMAIN_SETUP.md).
 
 **Stack:** React + Vite frontend · Supabase (Postgres + Auth, London region) backend.
 

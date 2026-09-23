@@ -25,8 +25,8 @@ export default function Login() {
   return (
     <div className="login-wrap">
       <form className="login-card" onSubmit={submit}>
-        <span className="brand-mark large">TS</span>
-        <h1>Theo Social Studio</h1>
+        <span className="brand-mark large">LS</span>
+        <h1>Lantern Social</h1>
         <p className="muted">Client, content and analytics hub</p>
         <label>
           Email
