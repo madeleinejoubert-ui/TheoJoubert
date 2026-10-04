@@ -21,6 +21,10 @@ import SitePackages from './site/pages/Packages.jsx'
 import SiteFAQ from './site/pages/FAQPage.jsx'
 import SiteResults from './site/pages/Results.jsx'
 import SiteFreeReview from './site/pages/FreeReview.jsx'
+import SiteSignup from './site/pages/Signup.jsx'
+import SiteWelcome from './site/pages/Welcome.jsx'
+import SiteTerms from './site/pages/Terms.jsx'
+import SitePrivacy from './site/pages/Privacy.jsx'
 
 // Signed-out visitors see the Lantern Social marketing site (ported from the
 // Base44 build); /login opens the studio console / client portal sign-in.
@@ -37,6 +41,10 @@ function PublicSite() {
         <Route path="/about" element={<SiteAbout />} />
         <Route path="/faq" element={<SiteFAQ />} />
         <Route path="/free-review" element={<SiteFreeReview />} />
+        <Route path="/signup" element={<SiteSignup />} />
+        <Route path="/welcome" element={<SiteWelcome />} />
+        <Route path="/terms" element={<SiteTerms />} />
+        <Route path="/privacy" element={<SitePrivacy />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

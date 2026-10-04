@@ -8,6 +8,7 @@ const faqs = [
   { question: 'Do you create the content for us?', answer: "Yes. We create posts, captions, graphics and video concepts as part of your package. You can provide photos and videos too, but it's not required." },
   { question: 'How often will you post?', answer: 'Every day. Depending on your package we create 6–16 ads daily and post up to 6, 9 or 12 times a day across your channels. We recommend the right level based on your goals and budget.' },
   { question: 'Can I approve posts before they go live?', answer: "Absolutely. Every post goes through your approval before publishing. You're always in control of what represents your business." },
+  { question: 'Can I cancel at any time?', answer: "Yes. There's no minimum term. Cancel any time before your next monthly payment and you won't be charged again; your service runs to the end of the month you've paid for. See the Client Agreement for details." },
   { question: 'How much does social media management cost?', answer: "Our packages start from £295 per month. We'll recommend the right package during your free consultation based on your needs and budget." },
 ]
 

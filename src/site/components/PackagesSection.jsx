@@ -3,9 +3,9 @@ import { Check, Star, ArrowRight } from 'lucide-react'
 import { Button } from '../ui.jsx'
 
 const packages = [
-  { name: 'Starter', tagline: 'For businesses that need consistency', price_display: 'From £295', features: ['6–8 ads created daily', 'Posted up to 6 times a day', 'Across multiple channels (up to 3)', 'Monthly content strategy', 'Scheduling via Metricool', 'Monthly performance report', 'Monthly strategy check-in'], is_popular: false },
-  { name: 'Growth', tagline: 'For businesses ready to become more visible', price_display: 'From £495', features: ['9–12 ads created daily', 'Posted up to 9 times a day', 'Across multiple channels (up to 4)', 'Reels/video content concepts', 'Engagement monitoring', 'Monthly analytics report', 'Monthly strategy call'], is_popular: true },
-  { name: 'Pro', tagline: 'For businesses wanting a comprehensive presence', price_display: 'From £795', features: ['12–16 ads created daily', 'Posted up to 12 times a day', 'Across multiple channels (up to 6)', 'Short-form video content', 'Community engagement & campaign planning', 'Detailed analytics', 'Business webpage hosting included', 'Priority support'], is_popular: false },
+  { key: 'starter', name: 'Starter', tagline: 'For businesses that need consistency', price_display: 'From £295', features: ['6–8 ads created daily', 'Posted up to 6 times a day', 'Across multiple channels (up to 3)', 'Monthly content strategy', 'Scheduling via Metricool', 'Monthly performance report', 'Monthly strategy check-in'], is_popular: false },
+  { key: 'growth', name: 'Growth', tagline: 'For businesses ready to become more visible', price_display: 'From £495', features: ['9–12 ads created daily', 'Posted up to 9 times a day', 'Across multiple channels (up to 4)', 'Reels/video content concepts', 'Engagement monitoring', 'Monthly analytics report', 'Monthly strategy call'], is_popular: true },
+  { key: 'pro', name: 'Pro', tagline: 'For businesses wanting a comprehensive presence', price_display: 'From £795', features: ['12–16 ads created daily', 'Posted up to 12 times a day', 'Across multiple channels (up to 6)', 'Short-form video content', 'Community engagement & campaign planning', 'Detailed analytics', 'Business webpage hosting included', 'Priority support'], is_popular: false },
 ]
 
 export default function PackagesSection({ showAll = false }) {
@@ -15,7 +15,7 @@ export default function PackagesSection({ showAll = false }) {
         <div className="text-center mb-12">
           <p className="text-primary font-medium mb-2">Packages</p>
           <h2 className="text-3xl md:text-5xl font-heading font-bold text-balance">Simple, transparent pricing</h2>
-          <p className="text-foreground/60 mt-4 max-w-2xl mx-auto">Affordable monthly packages designed for small businesses. No hidden fees, no long contracts.</p>
+          <p className="text-foreground/60 mt-4 max-w-2xl mx-auto">Affordable monthly packages designed for small businesses. No hidden fees, no minimum term. Cancel any time before your next payment.</p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {packages.map((pkg) => (
@@ -39,10 +39,13 @@ export default function PackagesSection({ showAll = false }) {
                   </li>
                 ))}
               </ul>
-              <Link to="/free-review" className="block">
+              <Link to={`/signup?plan=${pkg.key}`} className="block">
                 <Button className={pkg.is_popular ? 'btn-zest w-full h-12' : 'btn-outline-ink w-full h-12'}>
-                  Book a Free Consultation
+                  Sign up to {pkg.name}
                 </Button>
+              </Link>
+              <Link to="/free-review" className="block text-center text-sm text-foreground/60 hover:text-primary mt-3">
+                or book a free consultation
               </Link>
             </div>
           ))}

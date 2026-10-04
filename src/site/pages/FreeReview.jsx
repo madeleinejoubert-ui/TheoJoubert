@@ -203,7 +203,7 @@ export default function FreeReview() {
               </div>
               <label className="flex items-start gap-3 text-sm text-foreground/70 cursor-pointer">
                 <input type="checkbox" checked={form.gdpr_consent} onChange={(e) => set('gdpr_consent', e.target.checked)} className="mt-1 w-5 h-5 rounded accent-primary" />
-                <span>I consent to Lantern Social contacting me about my free social media review. I understand my data will be stored securely and not shared with third parties. I can request deletion of my data at any time. *</span>
+                <span>I consent to Lantern Social contacting me about my free social media review. My details are stored securely, never sold, and used as described in the <Link to="/privacy" target="_blank" className="text-primary hover:underline">Privacy Policy</Link>. I can ask for them to be deleted at any time. *</span>
               </label>
             </div>
           )}

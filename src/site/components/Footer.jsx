@@ -50,8 +50,8 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-secondary-foreground/15 flex flex-col md:flex-row gap-4 justify-between items-center text-sm text-secondary-foreground/60">
           <p>© {new Date().getFullYear()} Lantern Social. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link to="/faq" className="hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link to="/faq" className="hover:text-primary transition-colors">Terms of Service</Link>
+            <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-primary transition-colors">Client Agreement</Link>
           </div>
         </div>
       </div>

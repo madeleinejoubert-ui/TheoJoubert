@@ -139,3 +139,12 @@
     .animate-fade-up { animation: none; opacity: 1; }
   }
 }
+
+@layer components {
+  .legal-body { @apply text-foreground/80 leading-relaxed; font-size: 16px; }
+  .legal-body > * + * { margin-top: 1rem; }
+  .legal-body h2 { @apply font-heading font-semibold text-xl text-ink; margin-top: 2rem; }
+  .legal-body ul { @apply list-disc pl-5 space-y-2; }
+  .legal-body a { @apply text-primary hover:underline; }
+  .legal-body .legal-contact { @apply border-t border-border pt-5 mt-8 text-sm text-foreground/60; }
+}
