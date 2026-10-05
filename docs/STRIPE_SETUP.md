@@ -20,8 +20,10 @@ so each payment traces back to its signed agreement.
 
 - Card statement descriptor: **STORYC LANTERN** (matches the other `STORYC …` divisions).
 - Each link redirects to `https://lanternsocial.co.uk/welcome?plan=…`, collects an
-  optional business name, and shows: "Lantern Social is a trading name of StoryC Ltd.
-  Billed monthly. No minimum term: cancel any time before your next payment."
+  optional business name, and shows: "Lantern Social. Billed monthly. No minimum term:
+  cancel any time before your next payment." Checkout deliberately names only Lantern
+  Social, not StoryC Ltd: the Stripe account is currently registered as an individual,
+  so a company name should only appear once the account is moved to the company.
 - **Customer portal** `bpc_1UN6ZT74wtuPtRCOEAh1Y697` ("Lantern Social client billing"):
   cancel **at the end of the billing period** (no refund for the month already started),
   update card, update contact details, invoice history. Plan switching is off.
