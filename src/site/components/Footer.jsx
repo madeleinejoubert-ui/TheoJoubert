@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Lamp, Mail, Phone, MapPin } from 'lucide-react'
+import { BILLING_PORTAL_URL } from '../business.js'
 
 export default function Footer() {
   return (
@@ -52,6 +53,7 @@ export default function Footer() {
           <div className="flex gap-6">
             <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-primary transition-colors">Client Agreement</Link>
+            {BILLING_PORTAL_URL && <a href={BILLING_PORTAL_URL} className="hover:text-primary transition-colors">Manage billing</a>}
           </div>
         </div>
       </div>

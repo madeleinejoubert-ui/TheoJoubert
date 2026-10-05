@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { PartyPopper, Check } from 'lucide-react'
 import { Button } from '../ui.jsx'
-import { BUSINESS } from '../business.js'
+import { BUSINESS, BILLING_PORTAL_URL } from '../business.js'
 
 export default function Welcome() {
   return (
@@ -25,6 +25,11 @@ export default function Welcome() {
           <Link to="/login"><Button className="btn-zest h-12 px-6">Create your portal login</Button></Link>
           <a href={`mailto:${BUSINESS.email}`}><Button className="btn-outline-ink h-12 px-6">Email Theo</Button></a>
         </div>
+        {BILLING_PORTAL_URL && (
+          <p className="text-sm text-foreground/50 mt-6">
+            Need to update your card or cancel? <a href={BILLING_PORTAL_URL} className="text-primary hover:underline">Manage your billing</a>
+          </p>
+        )}
       </div>
     </section>
   )
